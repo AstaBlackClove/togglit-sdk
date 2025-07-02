@@ -1,0 +1,38 @@
+{
+  "name": "togglit-sdk",
+  "version": "1.0.4",
+  "description": "ToggLit SDK makes it easy to fetch dynamic JSON config files from your ToggLit project environments using just a project ID and API key. Ideal for feature toggles, remote settings, A/B testing, and more — without redeploying code.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "feature-flags",
+    "toggles",
+    "configuration",
+    "remote-config"
+  ],
+  "author": "guna",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "typescript": "^5.8.3"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
