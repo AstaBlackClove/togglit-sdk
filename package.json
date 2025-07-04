@@ -1,6 +1,6 @@
 {
   "name": "togglit-sdk",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "ToggLit SDK makes it easy to fetch dynamic JSON config files from your ToggLit project environments using just a project ID and API key. Ideal for feature toggles, remote settings, A/B testing, and more — without redeploying code.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
