@@ -1,6 +1,6 @@
 # Togglit SDK
 
-A lightweight TypeScript SDK for fetching configuration from Togglit with real-time updates and smart caching support.
+A lightweight TypeScript SDK for fetching configuration from Togglit with real-time updates and caching support.
 
 ## Installation
 
@@ -35,18 +35,17 @@ console.log(config);
 
 ### `getConfig(options)`
 
-Fetches configuration from Togglit with automatic fallback support and smart caching.
+Fetches configuration from Togglit with automatic fallback support.
 
 #### Parameters
 
-| Parameter     | Type                  | Required | Description                                                |
-| ------------- | --------------------- | -------- | ---------------------------------------------------------- |
-| `apiKey`      | `string`              | ✅       | Your Togglit API key                                       |
-| `projectId`   | `string`              | ✅       | Your project identifier                                    |
-| `env`         | `string`              | ✅       | Environment name (e.g., 'production', 'development')       |
-| `version`     | `number`              | ❌       | Specific configuration version to fetch                    |
-| `fallback`    | `Record<string, any>` | ❌       | Fallback configuration object (default: `{}`)              |
-| `bypassCache` | `boolean`             | ❌       | Force bypass cache and fetch fresh data (default: `false`) |
+| Parameter   | Type                  | Required | Description                                          |
+| ----------- | --------------------- | -------- | ---------------------------------------------------- |
+| `apiKey`    | `string`              | ✅       | Your Togglit API key                                 |
+| `projectId` | `string`              | ✅       | Your project identifier                              |
+| `env`       | `string`              | ✅       | Environment name (e.g., 'production', 'development') |
+| `version`   | `number`              | ❌       | Specific configuration version to fetch              |
+| `fallback`  | `Record<string, any>` | ❌       | Fallback configuration object (default: `{}`)        |
 
 #### Returns
 
@@ -75,57 +74,20 @@ const config = await getConfig({
     api_url: "https://api.example.com",
   },
 });
-
-// Force fresh data (bypass cache)
-const config = await getConfig({
-  apiKey: "tk_1234567890",
-  projectId: "my-project",
-  env: "production",
-  bypassCache: true,
-});
 ```
 
 ## Features
 
 - **Real-time Updates**: Fetch the latest configuration from Togglit
-- **Smart Caching**: Intelligent caching that automatically disables cache for non-production environments
-- **Cache Control**: Manual cache bypass option for when you need fresh data
+- **Caching**: Built-in caching for optimal performance
 - **Fallback Support**: Automatic fallback to default values on API failures
 - **TypeScript Support**: Full TypeScript support with type definitions
 - **Lightweight**: Minimal dependencies and small bundle size
 - **Error Handling**: Graceful error handling with fallback configuration
 
-## Smart Caching Behavior
+## Environment Configuration
 
-The SDK includes intelligent caching logic:
-
-- **Production environments** (`env: 'production'` or `env: 'prod'`): Uses caching by default for optimal performance
-- **Non-production environments**: Automatically bypasses cache to ensure fresh configuration during development
-- **Manual override**: Use `bypassCache: true` to force fresh data regardless of environment
-
-```typescript
-// Production - uses cache by default
-const prodConfig = await getConfig({
-  apiKey: "your-api-key",
-  projectId: "my-project",
-  env: "production", // Cache enabled
-});
-
-// Development - automatically bypasses cache
-const devConfig = await getConfig({
-  apiKey: "your-api-key",
-  projectId: "my-project",
-  env: "development", // Cache automatically bypassed
-});
-
-// Force fresh data in production
-const freshConfig = await getConfig({
-  apiKey: "your-api-key",
-  projectId: "my-project",
-  env: "production",
-  bypassCache: true, // Force bypass cache
-});
-```
+The SDK connects to your Togglit instance at `http://localhost:3000` by default. Make sure your Togglit server is running and accessible.
 
 ## Error Handling
 
@@ -194,7 +156,7 @@ const apiClient = new ApiClient({
 ### Environment-Specific Configuration
 
 ```typescript
-// Development - cache automatically bypassed
+// Development
 const devConfig = await getConfig({
   apiKey: "dev-api-key",
   projectId: "my-project",
@@ -202,7 +164,7 @@ const devConfig = await getConfig({
   fallback: { debugMode: true },
 });
 
-// Production - cache enabled
+// Production
 const prodConfig = await getConfig({
   apiKey: "prod-api-key",
   projectId: "my-project",
@@ -227,7 +189,6 @@ const options: GetConfigOptions = {
     feature1: true,
     feature2: false,
   },
-  bypassCache: false,
 };
 
 const config: Record<string, any> = await getConfig(options);
