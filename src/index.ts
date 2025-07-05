@@ -13,7 +13,7 @@ export async function getConfig({
   version,
   fallback = {},
 }: GetConfigOptions): Promise<Record<string, any>> {
-  const url = new URL("https://togglit.vercel.app/api/public/config");
+  const url = new URL("https://togglit.vercel.app/api/config");
   url.searchParams.append("projectId", projectId);
   url.searchParams.append("env", env);
   if (version) {
