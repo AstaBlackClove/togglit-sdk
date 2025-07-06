@@ -87,7 +87,7 @@ const config = await getConfig({
 
 ## Environment Configuration
 
-The SDK connects to your Togglit instance at `http://localhost:3000` by default. Make sure your Togglit server is running and accessible.
+The SDK connects to your Togglit instance at `https://togglit.vercel.app` by default. Make sure your Togglit server is running and accessible.
 
 ## Error Handling
 
